@@ -1,7 +1,7 @@
-def __nonWhiteValues()->list[str]:
+def nonWhiteValues()->list[str]:
     return [' ',',','.','-','/']
 
-def __splitFromChars(string:str,ignore:list[str],nondigit=False)->list[str]:
+def splitFromChars(string:str,ignore:list[str],nondigit=False)->list[str]:
     if(len(ignore)==0):
         return str
     result = []
