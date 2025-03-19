@@ -38,4 +38,9 @@ def getContainsWords(array:list[str],words:list[str]=['i', 'oraz', 'ale', 'że' 
             result.append(sentence)
     return result
 
+
+
+
+
+
 print(getContainsWords([" i i i i i dupa","asdasdad"]))
