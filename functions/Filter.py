@@ -10,6 +10,8 @@ def getZdaniaPodrzedne(array,mincount=4):
             result.append(s)
     return result
 
+
+
 def getAskYellSentence(array:list[str])->list[str]:
     result = []
     for sentence in array:
