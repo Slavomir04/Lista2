@@ -1,16 +1,43 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+import sys
+import io
+import re
+sys.stdin = io.TextIOWrapper(sys.stdin.buffer, encoding='utf-8')
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+def checkPreambula(book:str):
+     line_counter = 0
+     counter = 0
+     isPreambula = False
+     while line_counter <= 10:
+         if (book[counter:counter+3] == "\n\n\n"):
+             isPreambula = True
+             line_counter += 2
+         elif (isPreambula == True and book[counter] != "\n" and book[counter] != " "):
+             return counter
+         elif (book[counter:counter+2] == "\n\n"):
+             line_counter += 1
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+         counter+=1
+     return 0
+
+
+def checkEnd(book:str):
+    for counter in range(0, len(book) - 1, 1):
+       if (book[counter:counter + 5] == "-----"):
+           return counter
+
+def deleteWhiteSpaces(book:str):
+    return "\n".join(" ".join(line.split()) for line in book.split("\n")).strip()
+
+def divideIntoSentences(book:str):
+    return re.split(r'(?<=[.!?])', deleteWhiteSpaces(book))
+
+
+if __name__ == "__main__":
+    name = sys.stdin.read()
+
+    print(divideIntoSentences(name))
+
+
+
+

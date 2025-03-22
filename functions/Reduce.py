@@ -32,7 +32,7 @@ def whiteCharCunter(array:list[str])->int:
 
 def oneNameCounterInLine(line:str)->int:
         c=0
-        a = __splitFromChars(string=line,ignore=__nonWhiteValues(),nondigit=True)
+        a = splitFromChars(string=line,ignore=nonWhiteValues(),nondigit=True)
         for i in range(1,len(a)):
             first_char = a[i][0]
             if ord('A') <= ord(first_char) <= ord('Z'):
