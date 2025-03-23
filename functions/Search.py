@@ -5,7 +5,7 @@ def longestSentence(array:list[str])->str:
     return max(array,key= lambda x: len(x))
 
 
-def longestSentence2(array:list[str])->str:
+def longestSentence_non_same_char(array:list[str])->str:
     """Funkcja wyszukująca najdłuższe zdanie, w którym żadne dwa sąsiadujące słowa niezaczynają się na tę samą literę"""
     result = ""
     for sentence in array:
@@ -19,9 +19,23 @@ def longestSentence2(array:list[str])->str:
             result = sentence
     return result
 
-def zdaniePodrzedne(array):
+
+
+def getZdaniaPodrzedne(array:[str],mincount=4):
+    """
+    result = []
     for sentence in array:
-        s = sentence.split(',')
-        if len(s)>1:
-            return sentence
-    return ""
+        s = Reduce.splitFromChars(sentence,ignore=Reduce.nonWhiteValues())
+        if len(s)>=mincount:
+            result.append(s)
+    return result
+    """
+    result = []
+    for sentence in array:
+        c=0
+        for char in sentence:
+            if char == ',':
+                c+=1
+        if c>=mincount:
+            result.append(sentence)
+    return result

@@ -21,7 +21,7 @@ def splitFromChars(string:str,ignore:list[str],nondigit=False)->list[str]:
 def paragraphCounter(array:list[str])->int:
     return len(array)
 
-def whiteCharCunter(array:list[str])->int:
+def whiteCharCounter(array:list[str])->int:
     c =0
     for line in array:
         for c in line:

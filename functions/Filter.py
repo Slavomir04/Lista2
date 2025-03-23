@@ -2,13 +2,7 @@ from markdown_it.common.utils import isValidEntityCode
 
 import Reduce
 
-def getZdaniaPodrzedne(array,mincount=4):
-    result = []
-    for sentence in array:
-        s = Reduce.splitFromChars(sentence,ignore=Reduce.nonWhiteValues())
-        if len(s)>=mincount:
-            result.append(s)
-    return result
+
 
 
 
@@ -47,11 +41,11 @@ l. Funkcja wypisująca tylko te zdania, których wyrazy są w porządku leksykog
 
 
 def getKwartyl(array:list[str])->list[str]:
-    max_len = len(max(array,key=lambda x: len(x)))
+    max_len = len(max(array, key=lambda x: len(x)))
+    quart_len = int(max_len // 4) + (1 if max_len % 4 != 0 else 0)
     result = []
     for sentence in array:
-        print(max_len,len(sentence))
-        if len(sentence)<=max_len//4:
+        if len(sentence) <= quart_len:
             result.append(sentence)
     return result
 
@@ -69,4 +63,3 @@ def getIfSorted(array:list[str])->list[str]:
     return result
 
 
-print(getIfSorted(["a"]))
