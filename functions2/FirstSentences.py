@@ -1,18 +1,21 @@
 
+import tools
+
 
 
 def getFirstSentences(input:str,number:int=20)->str:
     result = ''
+    previous_char = ''
     for char in input:
         if number<=0:
             break
         else:
             result = result + char
-            if char=='\n':
+            if tools.isItEnd(previous_char,char):
                 number-=1
-
+        previous_char = char
     return result
 
 
 
-#print(getFirstSentences('1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13',10))
+##print(getFirstSentences('1.2.3.4.5.6.7.8.10',10))

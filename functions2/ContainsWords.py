@@ -8,20 +8,22 @@ def getContainsWords(input:str,mincontains=2,words:list[str]=['i', 'oraz', 'ale'
     current = ''
     counter = 0
     word = ''
+    prev_char = ''
     for char in input:
         current = current + char
-        if char == '\n':
+        if tools.isItEnd(prev_char,char):#char == '\n':
             if counter >= mincontains:
                 result += current
             current = ''
             word = ''
             counter = 0
-        elif tools.isWhiteChar(char):
+        elif char.isalpha():
             word += char
         else:
             if word in words:
                 counter += 1
             word = ''
+        prev_char = char
     if word in words:
         counter += 1
     if counter >= mincontains:
@@ -29,4 +31,4 @@ def getContainsWords(input:str,mincontains=2,words:list[str]=['i', 'oraz', 'ale'
     return result
 
 
-#print(getContainsWords("kurwa ma c oraz i ale lub\njprdl na chuj to tak\noraz i"))
+#print(getContainsWords("zdanie i oraz koniec. zdanie bez niczego! zdanie z ale że"))

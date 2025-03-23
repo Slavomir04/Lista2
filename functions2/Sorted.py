@@ -15,9 +15,10 @@ def getIfSorted(input:str)->str:
     last_word = ''
     word = ''
     isGood=True
+    previous_char = ''
     for char in input:
         current +=char
-        if char == '\n':
+        if tools.isItEnd(previous_char,char):#char == '\n':
             if not isValid(last_word,word):
                 isGood = False
             if isGood:
@@ -26,7 +27,7 @@ def getIfSorted(input:str)->str:
             last_word = ''
             word = ''
             isGood = True
-        elif not tools.isWhiteChar(char):
+        elif not char.isalpha():#tools.isWhiteChar(char):
             if not isValid(last_word,word):
                 isGood = False
             if len(word)>0:
@@ -34,11 +35,8 @@ def getIfSorted(input:str)->str:
             word = ''
         else:
             word += char
-    if not isValid(last_word,word):
-        isGood = False
-    if isGood:
-        result += current
+        previous_char = char
     return result
 
-#print(getIfSorted('abcde dupa\nbad add\nabc\n\ndupa'))
+#print(getIfSorted('a b c.ba bb. cb cd'))
 

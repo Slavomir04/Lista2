@@ -1,14 +1,16 @@
-
+import tools
 def findMax(s:str)->int:
     max_out = 0
     count = 0
+    previous_char = ''
     for char in s:
-        if char == '\n':
+        if tools.isItEnd(previous_char, char):
             count = 0
         else:
             count += 1
         if max_out<count:
             max_out = count
+        previous_char = char
     return max_out
 
 
@@ -21,18 +23,20 @@ długości zdania (kryterium – liczba znaków)."""
     quart_len = int(max_len//4) +(1 if max_len % 4 != 0 else 0)
     result = ''
     current = ''
+    previous_char = ''
     for char in input:
         current = current + char
-        if char == '\n':
+        if tools.isItEnd(previous_char,char):
             if len(current) <= quart_len+1:
                 result = result + current
             current = ''
+        previous_char = current
     if len(current) <= quart_len+1:
         result = result + current
     return result
 
 
-#print(getKwartyl('123456789\n123\n123456\n1'))
+print(getKwartyl('123456789.123. 123456. 1'))
 
 
 

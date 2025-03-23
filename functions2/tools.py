@@ -1,4 +1,9 @@
 
 
 def isWhiteChar(char):
-    return ord('a')<=ord(char)<=ord('z') or ord('A')<=ord(char)<=ord('Z')
+    return char in (' ', '\t', '\n', '\r', '\v', '\f')
+def isSpecialChar(char:str):
+    char.isalpha()
+
+def isItEnd(previousChar:str, currentChar:str)->bool:
+    return ['.','?','!'].__contains__(currentChar) or (previousChar == currentChar and previousChar =='\n')

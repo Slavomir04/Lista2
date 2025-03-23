@@ -7,10 +7,11 @@ def longestSentence_non_sam_char(input:str)->str:
     word = ''
     max = ''
     isGood = True
+    previous_char = ''
     for char in input:
         current +=char
 
-        if char == '\n':
+        if tools.isItEnd(previous_char,char):
             if len(word)>0 and word[0]==last_word[0]:
                 isGood = False
             if isGood and len(max)<len(current):
@@ -19,7 +20,7 @@ def longestSentence_non_sam_char(input:str)->str:
             last_word = ''
             word = ''
             isGood = True
-        elif not tools.isWhiteChar(char):
+        elif not char.isalpha():#not tools.isWhiteChar(char):
             if len(word)>0:
                 if len(last_word)>0 and word[0]==last_word[0]:
                     isGood = False
@@ -27,6 +28,7 @@ def longestSentence_non_sam_char(input:str)->str:
             word = ''
         else:
             word += char
+        previous_char = char
     if len(word) > 0 and len(last_word)>0 and word[0] == last_word[0]:
         isGood = False
     if isGood and len(max) < len(current)+(1 if input[-1]!='\n' else 0):
@@ -34,4 +36,4 @@ def longestSentence_non_sam_char(input:str)->str:
 
     return max
 
-#print(longestSentence_non_sam_char("abc abd 131232121dojnazinasudsanodnasodna\na b c d e f g h j k l\n a b c 1231231232112321321321131231233"))
+#print(longestSentence_non_sam_char("abc badassadasasd kabd dojnazinasudsanodnasodna.a b c d e f g h j k l. a b c asdsadsadsadsadadasasasdsad"))

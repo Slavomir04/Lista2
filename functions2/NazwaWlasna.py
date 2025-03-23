@@ -1,5 +1,5 @@
 
-
+import tools
 def procentNazwaWlasnych(input:str)->str:
     """Funkcja licząca procent zdań, które zawierają przynajmniej jedną nazwę własną (niech
 nazwą własną będzie każdy wyraz napisany wielką literą, nie będący pierwszym wyrazem
@@ -9,24 +9,22 @@ w zdaniu)."""
 
     isThere = False
     first = True
-    prev = ''
+    previous_char = ''
     for char in input:
-        if char == '\n':
+        if tools.isItEnd(previous_char,char):
             counter_sentences += 1
             if (not first) and isThere:
                 counter += 1
             isThere = False
             first = True
-        elif prev==' ' and char.isupper():
+        elif previous_char==' ' and char.isupper():
             if first:
                 first = False
             isThere = True
-        prev = char
-    if input[-1] != '\n':
-        counter_sentences += 1
+        previous_char = char
     if (not first) and isThere:
         counter += 1
     return counter/counter_sentences*100
 
 
-#print(procentNazwaWlasnych('Tak Nie\nCi na imiIe Taj\nnie'))
+#print(procentNazwaWlasnych('Tak Nie. Ci na imiIe Taj. nie.'))
