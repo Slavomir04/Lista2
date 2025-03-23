@@ -17,14 +17,15 @@ w zdaniu)."""
                 counter += 1
             isThere = False
             first = True
-        elif previous_char==' ' and char.isupper():
+        elif not previous_char.isalpha() and char.isupper():
             if first:
                 first = False
-            isThere = True
+            else:
+                isThere = True
         previous_char = char
     if (not first) and isThere:
         counter += 1
     return counter/counter_sentences*100
 
 
-#print(procentNazwaWlasnych('Tak Nie. Ci na imiIe Taj. nie.'))
+print(procentNazwaWlasnych('Jest Nazwa wlasna! Nie ma nazwy wlasnej? Tu tez nie. Tu Tak!'))

@@ -27,16 +27,16 @@ długości zdania (kryterium – liczba znaków)."""
     for char in input:
         current = current + char
         if tools.isItEnd(previous_char,char):
-            if len(current) <= quart_len+1:
+            if len(current) - (1 if previous_char =='\n' and char =='\n' else 0) <= quart_len+1:
                 result = result + current
             current = ''
-        previous_char = current
+        previous_char = char
     if len(current) <= quart_len+1:
         result = result + current
     return result
 
 
-print(getKwartyl('123456789.123. 123456. 1'))
+print(getKwartyl('123456789112.123\n\n12345!1.'))
 
 
 
