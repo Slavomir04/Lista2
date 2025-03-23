@@ -1,6 +1,16 @@
 import tools
+import sys
+import io
+
+sys.stdin = io.TextIOWrapper(sys.stdin.buffer, encoding='utf-8')
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+
+
 def longestSentence(input:str)->str:
     """Funkcja wypisująca najdłuższe zdanie w książce (kryterium – liczba znaków)."""
+    tools.checkText(input)
+    tools.checkIsEmpty(input)
+
     max_sentence = ""
     current = ''
     previous_char = ''
@@ -15,4 +25,7 @@ def longestSentence(input:str)->str:
         max_sentence = current
     return max_sentence
 
-#print(longestSentence(".1234567. 123. 123456789. 1234567812312 1232112321 12321 1."))
+if __name__ == "__main__":
+    book = sys.stdin.read()
+
+    print(longestSentence(book))

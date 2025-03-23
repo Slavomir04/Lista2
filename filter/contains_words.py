@@ -1,9 +1,16 @@
-from debugpy.common.timestamp import current
 import tools
+import sys
+import io
+
+sys.stdin = io.TextIOWrapper(sys.stdin.buffer, encoding='utf-8')
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
 def getContainsWords(input:str,mincontains=2,words:list[str]=['i', 'oraz', 'ale', 'że' ,'lub'])->str:
     """j. Funkcja wypisująca tylko zdania, które zawierają co najmniej dwa wyrazy z następujących:
 „i”, „oraz”, „ale”, „że”, „lub”."""
+    tools.checkText(input)
+    tools.checkIsEmpty(input)
+
     result = ''
     current = ''
     counter = 0
@@ -11,7 +18,7 @@ def getContainsWords(input:str,mincontains=2,words:list[str]=['i', 'oraz', 'ale'
     prev_char = ''
     for char in input:
         current = current + char
-        if tools.isItEnd(prev_char,char):#char == '\n':
+        if tools.isItEnd(prev_char, char):#char == '\n':
             if counter >= mincontains:
                 result += current
             current = ''
@@ -31,4 +38,6 @@ def getContainsWords(input:str,mincontains=2,words:list[str]=['i', 'oraz', 'ale'
     return result
 
 
-#print(getContainsWords("zdanie i oraz koniec. zdanie bez niczego! zdanie z ale że"))
+if __name__ == "__main__":
+    book = sys.stdin.read()
+    print(getContainsWords(book))

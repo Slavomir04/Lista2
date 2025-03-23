@@ -1,4 +1,11 @@
 import tools
+import sys
+import io
+
+sys.stdin = io.TextIOWrapper(sys.stdin.buffer, encoding='utf-8')
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+
+
 def findMax(s:str)->int:
     max_out = 0
     count = 0
@@ -18,6 +25,8 @@ def findMax(s:str)->int:
 def getKwartyl(input:str)->str:
     """Funkcja, która wypisuje na wyjściu tylko zdania w czwartym kwartylu pod względem
 długości zdania (kryterium – liczba znaków)."""
+    tools.checkText(input)
+    tools.checkIsEmpty(input)
 
     max_len = findMax(input)
     quart_len = int(max_len//4) +(1 if max_len % 4 != 0 else 0)
@@ -26,7 +35,7 @@ długości zdania (kryterium – liczba znaków)."""
     previous_char = ''
     for char in input:
         current = current + char
-        if tools.isItEnd(previous_char,char):
+        if tools.isItEnd(previous_char, char):
             if len(current) <= quart_len+1:
                 result = result + current
             current = ''
@@ -36,7 +45,10 @@ długości zdania (kryterium – liczba znaków)."""
     return result
 
 
-print(getKwartyl('123456789.123. 123456. 1'))
+if __name__ == "__main__":
+    book = sys.stdin.read()
+
+    print(getKwartyl(book))
 
 
 

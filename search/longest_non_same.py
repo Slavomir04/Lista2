@@ -1,7 +1,16 @@
 import tools
 
+import sys
+import io
+
+sys.stdin = io.TextIOWrapper(sys.stdin.buffer, encoding='utf-8')
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+
 def longestSentence_non_sam_char(input:str)->str:
     """Funkcja wyszukująca najdłuższe zdanie, w którym żadne dwa sąsiadujące słowa niezaczynają się na tę samą literę"""
+    tools.checkText(input)
+    tools.checkIsEmpty(input)
+
     current = ''
     last_word = ''
     word = ''
@@ -36,4 +45,7 @@ def longestSentence_non_sam_char(input:str)->str:
 
     return max
 
-#print(longestSentence_non_sam_char("abc badassadasasd kabd dojnazinasudsanodnasodna.a b c d e f g h j k l. a b c asdsadsadsadsadadasasasdsad"))
+if __name__ == "__main__":
+    book = sys.stdin.read()
+
+    print(longestSentence_non_sam_char(book))

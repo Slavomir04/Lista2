@@ -1,8 +1,16 @@
 import tools
+import sys
+import io
 
+sys.stdin = io.TextIOWrapper(sys.stdin.buffer, encoding='utf-8')
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
 def getSentenceWithWordsCount(input:str,sep=' ',min=4)->str:
     """Funkcja wypisująca tylko zdania zawierające co najwyżej 4 wyrazy."""
+    tools.checkText(input)
+    tools.checkIsEmpty(input)
+
+
     result = ""
     current_sentence = ""
     count = 0
@@ -16,7 +24,7 @@ def getSentenceWithWordsCount(input:str,sep=' ',min=4)->str:
             if(len(word)>0):
                  count +=1
                  word = ''
-            if tools.isItEnd(previous_char,char):#char == '\n':
+            if tools.isItEnd(previous_char, char):#char == '\n':
                 if (len(current_sentence) > 0 and count >= min):
                     result += current_sentence + sep
                 current_sentence = ""
@@ -26,6 +34,9 @@ def getSentenceWithWordsCount(input:str,sep=' ',min=4)->str:
     return result
 
 
-#print(getSentenceWithWordsCount('Hello World dupa dupa.kurwa mac.chuj chuj hucj chuj.'))
+if __name__ == "__main__":
+    book = sys.stdin.read()
+
+    print(getSentenceWithWordsCount(book))
 
 

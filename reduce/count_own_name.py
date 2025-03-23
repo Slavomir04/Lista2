@@ -1,9 +1,13 @@
-import set_encoding
+import tools
 import sys
-from checkTypes import checkText
+import io
+
+sys.stdin = io.TextIOWrapper(sys.stdin.buffer, encoding='utf-8')
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
 def countSentences(title:str)->int:
-    checkText(title)
+    tools.checkText(title)
+    tools.checkIsEmpty(title)
 
     counter = 0
     separators = ["?", ".", "!"]
@@ -13,7 +17,8 @@ def countSentences(title:str)->int:
     return counter
 
 def countOwnNamePercent(title:str)->float:
-    checkText(title)
+    tools.checkText(title)
+    tools.checkIsEmpty(title)
 
     counter = 0
     isOwnNameFinded = False
@@ -29,6 +34,6 @@ def countOwnNamePercent(title:str)->float:
     return counter / countSentences(title) * 100
 
 if __name__ == "__main__":
-    name = sys.stdin.read()
+    book = sys.stdin.read()
 
-    print(countOwnNamePercent(1))
+    print(countOwnNamePercent(book))
