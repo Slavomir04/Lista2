@@ -35,7 +35,6 @@ def divideIntoSentences(book:str):
 
 if __name__ == "__main__":
     name = sys.stdin.read()
-
     print(divideIntoSentences(name))
 
 
