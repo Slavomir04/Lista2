@@ -2,12 +2,14 @@
 import tools
 
 def isValid(word1,word2)->bool:
+    if not word1.isalpha() or not word2.isalpha() :
+        return True
     for c1,c2 in zip(word1,word2):
         if ord(c1)<ord(c2):
             return True
         elif ord(c1)>ord(c2):
             return False
-    return True
+    return len(word1)==len(word2)
 def getIfSorted(input:str)->str:
     """Funkcja wypisująca tylko te zdania, których wyrazy są w porządku leksykograficznym."""
     result = ''
@@ -28,7 +30,7 @@ def getIfSorted(input:str)->str:
             word = ''
             isGood = True
         elif not char.isalpha():#tools.isWhiteChar(char):
-            if not isValid(last_word,word):
+            if last_word!='' and (not isValid(last_word,word)):
                 isGood = False
             if len(word)>0:
                 last_word = word
@@ -38,5 +40,5 @@ def getIfSorted(input:str)->str:
         previous_char = char
     return result
 
-#print(getIfSorted('a b c.ba bb. cb cd'))
+print(getIfSorted('a b c 12. aa ab ac. b a c! ab a.'))
 

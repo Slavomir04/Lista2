@@ -8,6 +8,8 @@ def paragraphCounter(input:str)->str:
         if previous_char == char and char == '\n':
             counter += 1
         previous_char = char
+    if previous_char == '\n':
+        counter = max(0, counter - 1)
     return counter
 
 #print(paragraphCounter('dupa\n\nchujci\nw\ndupe'))

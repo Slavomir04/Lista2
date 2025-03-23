@@ -1,7 +1,7 @@
 import tools
 
 
-def getSentenceWithWordsCount(input:str,sep=' ',min=4)->str:
+def getSentenceWithWordsCount(input:str,min=4)->str:
     """Funkcja wypisująca tylko zdania zawierające co najwyżej 4 wyrazy."""
     result = ""
     current_sentence = ""
@@ -17,8 +17,8 @@ def getSentenceWithWordsCount(input:str,sep=' ',min=4)->str:
                  count +=1
                  word = ''
             if tools.isItEnd(previous_char,char):#char == '\n':
-                if (len(current_sentence) > 0 and count >= min):
-                    result += current_sentence + sep
+                if (len(current_sentence) > 0 and count <= min):
+                    result += current_sentence
                 current_sentence = ""
                 count = 0
                 word = ''
