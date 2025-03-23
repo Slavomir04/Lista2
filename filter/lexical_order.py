@@ -6,12 +6,16 @@ sys.stdin = io.TextIOWrapper(sys.stdin.buffer, encoding='utf-8')
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
 def isValid(word1,word2)->bool:
+    if not word1.isalpha() or not word2.isalpha():
+        return True
     for c1,c2 in zip(word1,word2):
         if ord(c1)<ord(c2):
             return True
         elif ord(c1)>ord(c2):
             return False
-    return True
+    return len(word1) == len(word2)
+
+
 def getIfSorted(input:str)->str:
     """Funkcja wypisująca tylko te zdania, których wyrazy są w porządku leksykograficznym."""
     tools.checkText(input)
@@ -27,7 +31,7 @@ def getIfSorted(input:str)->str:
     for char in input:
         current +=char
         if tools.isItEnd(previous_char, char):#char == '\n':
-            if not isValid(last_word,word):
+            if last_word!='' and (not isValid(last_word,word)):
                 isGood = False
             if isGood:
                 result += current

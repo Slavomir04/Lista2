@@ -19,6 +19,8 @@ def getContainsWords(input:str,mincontains=2,words:list[str]=['i', 'oraz', 'ale'
     for char in input:
         current = current + char
         if tools.isItEnd(prev_char, char):#char == '\n':
+            if word in words:
+                counter += 1
             if counter >= mincontains:
                 result += current
             current = ''
@@ -31,10 +33,6 @@ def getContainsWords(input:str,mincontains=2,words:list[str]=['i', 'oraz', 'ale'
                 counter += 1
             word = ''
         prev_char = char
-    if word in words:
-        counter += 1
-    if counter >= mincontains:
-        result += current
     return result
 
 
