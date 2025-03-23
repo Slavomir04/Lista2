@@ -15,7 +15,7 @@ import search.podrzedne_zdania
 
 class TestFilterFunctions(unittest.TestCase):
 
-    def test_AskYellSentence(self):
+    def test_ask_yell_sentence(self):
         sentences = 'sadadad asd das! adasdasdsaasdass\n\n asdadadsda?'
         result = filter.ask_yell_sentence.getAskYellSentence(sentences)
         self.assertEqual(result, 'sadadad asd das! asdadadsda?')
@@ -56,7 +56,7 @@ class TestReduceFunctions(unittest.TestCase):
     def test_NonWhiteCharCounter(self):
         sentences = 'abc de. ,,,,,][];fg h.'
         result = reduce.count_white_char.whiteCharCounter(sentences)
-        self.assertEqual(int(result), 8)
+        self.assertEqual(int(result), 19)
 
     def test_NazwaWlasna(self):
         sentences = 'Jest Nazwa wlasna! Nie ma nazwy wlasnej? Tu tez nie. Tu Tak!'

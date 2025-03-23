@@ -2,8 +2,7 @@ import tools
 import sys
 import io
 
-sys.stdin = io.TextIOWrapper(sys.stdin.buffer, encoding='utf-8')
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+
 
 def getSentenceWithWordsCount(input:str,min=4)->str:
     """Funkcja wypisująca tylko zdania zawierające co najwyżej 4 wyrazy."""
@@ -35,6 +34,9 @@ def getSentenceWithWordsCount(input:str,min=4)->str:
 
 
 if __name__ == "__main__":
+    sys.stdin = io.TextIOWrapper(sys.stdin.buffer, encoding='utf-8')
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+
     book = sys.stdin.read()
 
     print(getSentenceWithWordsCount(book))

@@ -2,8 +2,7 @@ import tools
 import sys
 import io
 
-sys.stdin = io.TextIOWrapper(sys.stdin.buffer, encoding='utf-8')
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+
 
 def countSentences(title:str)->int:
     tools.checkText(title)
@@ -34,6 +33,9 @@ def countOwnNamePercent(title:str)->float:
     return counter / countSentences(title) * 100
 
 if __name__ == "__main__":
+    sys.stdin = io.TextIOWrapper(sys.stdin.buffer, encoding='utf-8')
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+
     book = sys.stdin.read()
 
     print(countOwnNamePercent(book))

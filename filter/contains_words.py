@@ -2,9 +2,6 @@ import tools
 import sys
 import io
 
-sys.stdin = io.TextIOWrapper(sys.stdin.buffer, encoding='utf-8')
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
-
 def getContainsWords(input:str,mincontains=2,words:list[str]=['i', 'oraz', 'ale', 'że' ,'lub'])->str:
     """j. Funkcja wypisująca tylko zdania, które zawierają co najmniej dwa wyrazy z następujących:
 „i”, „oraz”, „ale”, „że”, „lub”."""
@@ -37,5 +34,9 @@ def getContainsWords(input:str,mincontains=2,words:list[str]=['i', 'oraz', 'ale'
 
 
 if __name__ == "__main__":
+    sys.stdin = io.TextIOWrapper(sys.stdin.buffer, encoding='utf-8')
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+
+
     book = sys.stdin.read()
     print(getContainsWords(book))

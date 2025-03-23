@@ -2,8 +2,7 @@ import tools
 import sys
 import io
 
-sys.stdin = io.TextIOWrapper(sys.stdin.buffer, encoding='utf-8')
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+
 
 
 def getAskYellSentence(input:str)->str:
@@ -26,6 +25,9 @@ def getAskYellSentence(input:str)->str:
     return result
 
 if __name__ == "__main__":
+    sys.stdin = io.TextIOWrapper(sys.stdin.buffer, encoding='utf-8')
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+
     book = sys.stdin.read()
 
     print(getAskYellSentence(book))

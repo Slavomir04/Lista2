@@ -2,8 +2,7 @@ import tools
 import sys
 import io
 
-sys.stdin = io.TextIOWrapper(sys.stdin.buffer, encoding='utf-8')
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+
 
 def getFirstSentences(input:str,number:int=20)->str:
     tools.checkText(input)
@@ -22,6 +21,10 @@ def getFirstSentences(input:str,number:int=20)->str:
     return result
 
 if __name__ == "__main__":
+    sys.stdin = io.TextIOWrapper(sys.stdin.buffer, encoding='utf-8')
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+
+
     book = sys.stdin.read()
 
     print(getFirstSentences(book))

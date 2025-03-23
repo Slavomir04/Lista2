@@ -2,8 +2,7 @@ import sys
 import io
 import tools
 
-sys.stdin = io.TextIOWrapper(sys.stdin.buffer, encoding='utf-8')
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+
 
 def whiteCharCounter(book:str)->int:
     """Funkcja zliczająca wszystkie znaki w tekście, z pominięciem białych znaków."""
@@ -18,6 +17,10 @@ def whiteCharCounter(book:str)->int:
     return counter
 
 if __name__ == "__main__":
+    sys.stdin = io.TextIOWrapper(sys.stdin.buffer, encoding='utf-8')
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+
+
     name = sys.stdin.read()
 
     print(whiteCharCounter(name))
