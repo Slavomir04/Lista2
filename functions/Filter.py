@@ -2,17 +2,22 @@ from markdown_it.common.utils import isValidEntityCode
 
 import Reduce
 
-def getZdaniaPodrzedne(array,mincount=4):
+
+def getSentenceWithWordsCount(array:list[str],mincount=4)->list[str]:
+    """Funkcja wypisująca tylko zdania zawierające co najwyżej 4 wyrazy."""
     result = []
     for sentence in array:
-        s = Reduce.splitFromChars(sentence,ignore=Reduce.nonWhiteValues())
-        if len(s)>=mincount:
-            result.append(s)
+        splited = Reduce.splitFromChars(sentence,Reduce.nonWhiteValues())
+        if len(splited) >= mincount:
+            result.append(sentence)
     return result
 
-
+def getFirstSentences(array:list[str],number:int=20)->list[str]:
+    """Funkcja wypisująca pierwszych 20 zdań"""
+    return array[:number]
 
 def getAskYellSentence(array:list[str])->list[str]:
+    """Funkcja, która wypisuje na wyjściu tylko zdania, które są pytaniami lub wykrzyknieniami."""
     result = []
     for sentence in array:
         if sentence.endswith('?'):
@@ -38,24 +43,19 @@ def getContainsWords(array:list[str],words:list[str]=['i', 'oraz', 'ale', 'że' 
 
 
 
-
-
-"""k. Funkcja, która wypisuje na wyjściu tylko zdania w czwartym kwartylu pod względem
-długości zdania (kryterium – liczba znaków).
-l. Funkcja wypisująca tylko te zdania, których wyrazy są w porządku leksykograficznym."""
-
-
-
 def getKwartyl(array:list[str])->list[str]:
-    max_len = len(max(array,key=lambda x: len(x)))
+    """Funkcja, która wypisuje na wyjściu tylko zdania w czwartym kwartylu pod względem
+długości zdania (kryterium – liczba znaków)."""
+    max_len = len(max(array, key=lambda x: len(x)))
+    quart_len = int(max_len // 4) + (1 if max_len % 4 != 0 else 0)
     result = []
     for sentence in array:
-        print(max_len,len(sentence))
-        if len(sentence)<=max_len//4:
+        if len(sentence) <= quart_len:
             result.append(sentence)
     return result
 
 def getIfSorted(array:list[str])->list[str]:
+    """Funkcja wypisująca tylko te zdania, których wyrazy są w porządku leksykograficznym."""
     result = []
     for sentence in array:
         isValid = True
@@ -69,4 +69,3 @@ def getIfSorted(array:list[str])->list[str]:
     return result
 
 
-print(getIfSorted(["a"]))

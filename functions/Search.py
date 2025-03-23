@@ -2,10 +2,11 @@
 
 
 def longestSentence(array:list[str])->str:
+    """Funkcja wypisująca najdłuższe zdanie w książce (kryterium – liczba znaków)."""
     return max(array,key= lambda x: len(x))
 
 
-def longestSentence2(array:list[str])->str:
+def longestSentence_non_same_char(array:list[str])->str:
     """Funkcja wyszukująca najdłuższe zdanie, w którym żadne dwa sąsiadujące słowa niezaczynają się na tę samą literę"""
     result = ""
     for sentence in array:
@@ -19,9 +20,17 @@ def longestSentence2(array:list[str])->str:
             result = sentence
     return result
 
-def zdaniePodrzedne(array):
+
+
+def getZdaniaPodrzedne(array:[str],mincount=4):
+    """Funkcja wyszukująca pierwsze zdanie, które ma więcej niż jedno zdanie podrzędne (na
+podstawie przecinków)."""
+    result = []
     for sentence in array:
-        s = sentence.split(',')
-        if len(s)>1:
-            return sentence
-    return ""
+        c=0
+        for char in sentence:
+            if char == ',':
+                c+=1
+        if c>=mincount:
+            result.append(sentence)
+    return result
