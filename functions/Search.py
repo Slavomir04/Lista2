@@ -2,6 +2,7 @@
 
 
 def longestSentence(array:list[str])->str:
+    """Funkcja wypisująca najdłuższe zdanie w książce (kryterium – liczba znaków)."""
     return max(array,key= lambda x: len(x))
 
 
@@ -22,14 +23,8 @@ def longestSentence_non_same_char(array:list[str])->str:
 
 
 def getZdaniaPodrzedne(array:[str],mincount=4):
-    """
-    result = []
-    for sentence in array:
-        s = Reduce.splitFromChars(sentence,ignore=Reduce.nonWhiteValues())
-        if len(s)>=mincount:
-            result.append(s)
-    return result
-    """
+    """Funkcja wyszukująca pierwsze zdanie, które ma więcej niż jedno zdanie podrzędne (na
+podstawie przecinków)."""
     result = []
     for sentence in array:
         c=0

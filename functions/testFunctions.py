@@ -1,11 +1,18 @@
 import unittest
-from Filter import getAskYellSentence, getContainsWords, getKwartyl, getIfSorted
-from Reduce import nonWhiteValues, splitFromChars, paragraphCounter, whiteCharCounter, oneNameCounterInLine, procentNazwaWlasnych
+from Filter import getAskYellSentence, getContainsWords, getKwartyl, getIfSorted,getSentenceWithWordsCount,getFirstSentences
+from Reduce import paragraphCounter, whiteCharCounter, oneNameCounterInLine, procentNazwaWlasnych
 from Search import getZdaniaPodrzedne,longestSentence, longestSentence_non_same_char
 
 class TestFilterFunctions(unittest.TestCase):
 
-
+    def test_getSentenceWithWordsCount(self):
+        sentences = ['1 2 3 4','asdadasd asdadasd,. asdad','asdada,  ']
+        result = getSentenceWithWordsCount(sentences,2)
+        self.assertEqual(result,['1 2 3 4','asdadasd asdadasd,. asdad'])
+    def test_getFirstSentences(self):
+        sentences = ['1','2','3','4']
+        result = getFirstSentences(sentences,3)
+        self.assertEqual(result,['1','2','3'])
     def test_getAskYellSentence(self):
         sentences = ["Czy to jest pytanie?", "To jest zdanie!", "Kolejne zdanie."]
         result = getAskYellSentence(sentences)
