@@ -1,8 +1,8 @@
 import sys
 import io
 import re
+from functions.Reduce import countPercent
 sys.stdin = io.TextIOWrapper(sys.stdin.buffer, encoding='utf-8')
-
 
 def checkPreambula(book:str):
      line_counter = 0
@@ -36,7 +36,10 @@ def divideIntoSentences(book:str):
 if __name__ == "__main__":
     name = sys.stdin.read()
 
-    print(divideIntoSentences(name))
+    title = deleteWhiteSpaces(name)
+
+
+
 
 
 

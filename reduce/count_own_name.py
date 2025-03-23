@@ -1,24 +1,10 @@
-def paragraphCounter(book:str)->int:
-    """Funkcja zliczająca akapity w tekście (akapit jest oddzielony pustą linią)."""
-    count = 0
-
-    for i in range(0, len(book) - 1, 1):
-        if (book[i:i+2] == "\n\n"):
-            count += 1
-
-    return count
-
-def whiteCharCounter(book:str)->int:
-    """Funkcja zliczająca wszystkie znaki w tekście, z pominięciem białych znaków."""
-    counter = 0
-
-    for i in range(0, len(book), 1):
-        if (not book[i].isspace()):
-            counter += 1
-
-    return counter
+import set_encoding
+import sys
+from checkTypes import checkText
 
 def countSentences(title:str)->int:
+    checkText(title)
+
     counter = 0
     separators = ["?", ".", "!"]
     for i in range(0, len(title), 1):
@@ -26,7 +12,9 @@ def countSentences(title:str)->int:
             counter+=1
     return counter
 
-def countPercent(title:str)->float:
+def countOwnNamePercent(title:str)->float:
+    checkText(title)
+
     counter = 0
     isOwnNameFinded = False
     separators_combination = ["— ", "\n\n", "! ", ". ", "? "]
@@ -38,9 +26,9 @@ def countPercent(title:str)->float:
             counter+=1
             isOwnNameFinded = False
 
-    return counter
+    return counter / countSentences(title) * 100
 
+if __name__ == "__main__":
+    name = sys.stdin.read()
 
-
-
-
+    print(countOwnNamePercent(1))
